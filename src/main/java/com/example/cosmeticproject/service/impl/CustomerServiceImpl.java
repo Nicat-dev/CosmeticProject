@@ -53,36 +53,34 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void saveCustomer(CustomerRequest customerRequest) {
-        Customer customer = Customer.builder()
-                .name(customerRequest.getName())
-                .surname(customerRequest.getSurname())
-                .birthDate(customerRequest.getBirthDate())
-                .fatherName(customerRequest.getFatherName())
-                .motherName(customerRequest.getMotherName())
-                .workLocation(customerRequest.getWorkLocation())
-                .gender(customerRequest.getGender())
-                .maritalStatus(customerRequest.getMaritalStatus())
-                .location(customerRequest.getLocation())
-                .email(customerRequest.getGmail())
-                .phoneNumber(customerRequest.getPhoneNumber())
-                .finCode(customerRequest.getFinCode())
-                .build();
+        Customer customer = requestToEntity(customerRequest);
         customerRepository.save(customer);
 
     }
 
     @Override
     public void updateCustomer(CustomerRequest customerRequest) {
-
+        Customer customer = requestToEntity(customerRequest);
+        customer.setId(customerRequest.getId());
+        customerRepository.save(customer);
     }
 
     @Override
     public void deleteCustomerById(Long id) {
-
+        if (getCustomerById(id) == null){
+            throw new RuntimeException("Id tapilmadi");
+        }else {
+            customerRepository.deleteById(id);
+        }
     }
 
     @Override
     public void deleteCustomerByEmail(String email) {
+        if (getCustomerByEmail(email) == null){
+            throw new RuntimeException("Email tapilmadi");
+        }else {
+            customerRepository.deleteByEmail(email);
+        }
 
     }
 
@@ -100,6 +98,23 @@ public class CustomerServiceImpl implements CustomerService {
                 .gmail(customer.getEmail())
                 .finCode(customer.getFinCode())
                 .workLocation(customer.getWorkLocation())
+                .build();
+    }
+
+    private Customer requestToEntity(CustomerRequest customerRequest){
+        return Customer.builder()
+                .name(customerRequest.getName())
+                .surname(customerRequest.getSurname())
+                .birthDate(customerRequest.getBirthDate())
+                .fatherName(customerRequest.getFatherName())
+                .motherName(customerRequest.getMotherName())
+                .workLocation(customerRequest.getWorkLocation())
+                .gender(customerRequest.getGender())
+                .maritalStatus(customerRequest.getMaritalStatus())
+                .location(customerRequest.getLocation())
+                .email(customerRequest.getGmail())
+                .phoneNumber(customerRequest.getPhoneNumber())
+                .finCode(customerRequest.getFinCode())
                 .build();
     }
 }
