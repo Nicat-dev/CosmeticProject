@@ -13,8 +13,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @Entity
@@ -31,7 +29,8 @@ public class Customer {
     private String name;
     @Column(name = "surname",nullable = false)
     private String surname;
-    @Column(name = "birth_date",nullable = false)
+    @Column(name = "birth_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthDate;
     @Column(name = "father_name")
     private String fatherName;
