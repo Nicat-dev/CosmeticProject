@@ -2,9 +2,7 @@ package com.example.cosmeticproject.enums;
 
 public enum MaritalStatus {
     MARRIED("MARRIED"),
-    SINGLE("SINGLE"),
-    DIVORCED("DIVORCED"),
-    WIDOW("WIDOW");
+    SINGLE("SINGLE");
 
     private final String displayValue;
 
