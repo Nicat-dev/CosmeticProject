@@ -1,5 +1,8 @@
 package com.example.cosmeticproject.dto.request;
 
+import com.example.cosmeticproject.enums.GenderEnum;
+import com.example.cosmeticproject.enums.MaritalStatus;
+import com.example.cosmeticproject.enums.Position;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,7 +21,8 @@ public class AdminstrationRequest {
     private String fatherName;
     private String motherName;
     private String phoneNumber;
-    private String gender;
-    private String maritalStatus;
+    private GenderEnum gender;
+    private MaritalStatus maritalStatus;
+    private Position position;
     private String location;
 }
