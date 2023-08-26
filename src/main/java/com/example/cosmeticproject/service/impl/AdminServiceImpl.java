@@ -58,11 +58,12 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void deleteByEmail(String email) {
+        adminRepository.deleteByEmail(email);
     }
 
     @Override
     public void deleteByUserName(String username) {
-
+        adminRepository.deleteByUsername(username);
     }
 
     private AdminstartionDto entityToDto(Adminstration adminstration){
