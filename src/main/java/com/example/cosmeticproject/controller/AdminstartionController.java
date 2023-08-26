@@ -1,4 +1,4 @@
 package com.example.cosmeticproject.controller;
 
-public class AdminController {
+public class AdminstartionController {
 }

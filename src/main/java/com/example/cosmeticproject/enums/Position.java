@@ -1,12 +1,13 @@
 package com.example.cosmeticproject.enums;
 
-public enum MaritalStatus {
-    MARRIED("MARRIED"),
-    SINGLE("SINGLE");
+public enum Position {
+    Doctor("Hekim"),
+    Administrator("adminstrasiya"),
+    Worker("isci");
 
     private final String displayValue;
 
-    MaritalStatus(String displayValue) {
+    Position(String displayValue) {
         this.displayValue = displayValue;
     }
 
