@@ -54,6 +54,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void deleteById(Long id) {
         adminRepository.deleteById(id);
+
     }
 
     @Override
