@@ -2,6 +2,7 @@ package com.example.cosmeticproject.entity;
 
 import com.example.cosmeticproject.enums.GenderEnum;
 import com.example.cosmeticproject.enums.MaritalStatus;
+import com.example.cosmeticproject.enums.Position;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,10 +12,9 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotBlank;
 import java.sql.Date;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @Entity
@@ -27,15 +27,21 @@ public class Adminstration {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "username",nullable = false,unique = true)
+    @NotBlank(message = "username cannot be blank")
     private String username;
     @Column(name = "name",nullable = false)
+    @NotBlank(message = "surname cannot be blank")
     private String name;
     @Column(name = "surname",nullable = false)
+    @NotBlank(message = "surname cannot be blank")
     private String surname;
     @Column(name = "password",nullable = false)
     private String password;
     @Column(name = "birth_date",nullable = false)
+    @NotBlank(message = "birthday can not be blank")
     private Date birthDate;
+    @Column(name = "position",nullable = false)
+    private Position position;
     @Column(name = "father_name")
     private String fatherName;
     @Column(name = "mother_name")

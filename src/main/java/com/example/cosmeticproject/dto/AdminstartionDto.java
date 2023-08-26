@@ -19,5 +19,6 @@ public class AdminstartionDto {
     private String phoneNumber;
     private String gender;
     private String maritalStatus;
+    private String position;
     private String location;
 }
