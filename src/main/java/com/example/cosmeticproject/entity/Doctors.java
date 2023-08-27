@@ -9,8 +9,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @Entity
@@ -18,7 +16,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 public class Doctors {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,8 +44,4 @@ public class Doctors {
     @Column(name = "updated_at", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime updatedAt;
-
-    @OneToMany(mappedBy = "doctors", orphanRemoval = true)
-    private List<Customer> customers = new ArrayList<>();
-
 }
