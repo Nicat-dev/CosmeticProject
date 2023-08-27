@@ -9,5 +9,6 @@ public class DoctorDto {
     private String name;
     private String surname;
     private String email;
+    private String position;
     private String description;
 }
