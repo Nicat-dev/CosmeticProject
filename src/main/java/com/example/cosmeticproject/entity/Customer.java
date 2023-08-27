@@ -13,8 +13,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @Entity
@@ -70,8 +68,5 @@ public class Customer {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "doctors_id")
     private Doctors doctors;
-
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CosmeticOrder> cosmeticOrders = new ArrayList<>();
 
 }
