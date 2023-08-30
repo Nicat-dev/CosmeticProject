@@ -14,6 +14,6 @@ import java.math.BigDecimal;
 public class MedicineDto {
     private String medicineName;
     private String medicineCountry;
-    private String count;
+    private Long count;
     private BigDecimal price;
 }

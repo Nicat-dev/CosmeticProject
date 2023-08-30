@@ -15,6 +15,6 @@ public class MedicineRequest {
     private Long id;
     private String medicineName;
     private String medicineCountry;
-    private String count;
+    private Long count;
     private BigDecimal price;
 }
