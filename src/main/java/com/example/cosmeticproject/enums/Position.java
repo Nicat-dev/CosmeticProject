@@ -1,9 +1,9 @@
 package com.example.cosmeticproject.enums;
 
 public enum Position {
-    Doctor("Hekim"),
-    Administrator("adminstrasiya"),
-    Worker("isci");
+    DOCTOR("Hekim"),
+    ADMINISTRATOR("adminstrasiya"),
+    WORKER("isci");
 
     private final String displayValue;
 

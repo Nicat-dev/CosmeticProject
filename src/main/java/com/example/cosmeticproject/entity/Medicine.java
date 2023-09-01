@@ -3,12 +3,14 @@ package com.example.cosmeticproject.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "medicine")
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,7 +23,7 @@ public class Medicine {
     @Column(name = "medicine_country")
     private String medicineCountry;
     @Column(name = "count")
-    private String count;
+    private Long count;
     @Column(name = "price")
     private BigDecimal price;
 }
