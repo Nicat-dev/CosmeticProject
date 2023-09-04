@@ -11,9 +11,8 @@ import java.math.BigDecimal;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MedicineDto {
-    private String medicineName;
-    private String medicineCountry;
-    private Long count;
-    private BigDecimal price;
+public class PaymentDetailDto {
+    private String paymentInfo;
+    private BigDecimal paymentCost;
+    private BigDecimal salePercentage;
 }

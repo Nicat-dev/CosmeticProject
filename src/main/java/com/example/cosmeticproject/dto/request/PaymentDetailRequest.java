@@ -11,10 +11,12 @@ import java.math.BigDecimal;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MedicineRequest {
+public class PaymentDetailRequest {
+
     private Long id;
-    private String medicineName;
-    private String medicineCountry;
-    private Long count;
-    private BigDecimal price;
+    private String paymentInfo;
+    private BigDecimal paymentCost;
+    private BigDecimal salePercentage;
+    private String doctorName;
+    private String administratorId;
 }
