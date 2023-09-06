@@ -25,4 +25,9 @@ public class DoctorController {
         doctorService.saveDoctor(doctorRequest);
     }
 
+    @GetMapping("/findById")
+    public DoctorDto getById(@RequestParam Long id){
+        return doctorService.getDoctorById(id);
+    }
+
 }
