@@ -31,7 +31,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDto getCustomerByEmail(String email) {
-        return mapper.entityToDto(customerRepository.findCustomerByEmail(email));
+        return mapper.entityToDto(customerRepository.findCustomerByEmail(email)
+                .orElseThrow(()-> new ResourceNotFoundException("Customer","email not found",email)));
     }
 
     @Override
