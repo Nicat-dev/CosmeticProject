@@ -43,6 +43,6 @@ public class CosmeticServiceImpl implements CosmeticOrderService{
 
     @Override
     public void saveCosmeticOrder(CosmeticOrderRequest request) {
-
+        repository.save(mapper.requestToEntity(request));
     }
 }
