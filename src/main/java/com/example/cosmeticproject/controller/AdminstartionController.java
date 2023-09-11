@@ -28,6 +28,11 @@ public class AdminstartionController {
         service.deleteById(id);
     }
 
+    @PutMapping("/update")
+    public void updateAdmin(@RequestBody AdminstrationRequest request){
+        service.updateAdmin(request);
+    }
+
 
 
 }
