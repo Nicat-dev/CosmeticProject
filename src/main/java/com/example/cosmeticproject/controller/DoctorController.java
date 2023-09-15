@@ -25,9 +25,15 @@ public class DoctorController {
         doctorService.saveDoctor(doctorRequest);
     }
 
-    @GetMapping("/findById")
-    public DoctorDto getById(@RequestParam Long id){
+    @GetMapping("/findById/{id}")
+    public DoctorDto getById(@PathVariable Long id){
         return doctorService.getDoctorById(id);
     }
+
+    @DeleteMapping("/deleteById/{id}")
+    public void deleteById(@PathVariable Long id){
+        doctorService.deleteDoctorById(id);
+    }
+
 
 }
