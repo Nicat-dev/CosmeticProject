@@ -2,7 +2,6 @@ package com.example.cosmeticproject.service.impl;
 
 import com.example.cosmeticproject.dto.MedicineDto;
 import com.example.cosmeticproject.dto.request.MedicineRequest;
-import com.example.cosmeticproject.entity.Medicine;
 import com.example.cosmeticproject.exception.ResourceIdCanNotBeNull;
 import com.example.cosmeticproject.exception.ResourceNotFoundException;
 import com.example.cosmeticproject.mapper.MedicineMapper;
@@ -11,10 +10,8 @@ import com.example.cosmeticproject.service.MedicineService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 import static com.example.cosmeticproject.constants.ConstantValue.NOT_STOCK;
 
