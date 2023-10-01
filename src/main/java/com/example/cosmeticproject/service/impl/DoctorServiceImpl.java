@@ -7,6 +7,7 @@ import com.example.cosmeticproject.exception.ResourceNotFoundException;
 import com.example.cosmeticproject.mapper.DoctorMapper;
 import com.example.cosmeticproject.repository.DoctorRepository;
 import com.example.cosmeticproject.service.DoctorService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

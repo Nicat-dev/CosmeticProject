@@ -5,10 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.math.BigDecimal;
 
 @Entity
+@DynamicInsert
+@DynamicUpdate
 @Table(name = "medicine")
 @Data
 @Builder
@@ -18,7 +22,7 @@ public class Medicine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "medicine_name",nullable = false)
+    @Column(name = "medicine_name", nullable = false)
     private String medicineName;
     @Column(name = "medicine_country")
     private String medicineCountry;

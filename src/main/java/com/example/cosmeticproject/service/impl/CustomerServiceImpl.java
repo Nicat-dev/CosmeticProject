@@ -6,10 +6,12 @@ import com.example.cosmeticproject.exception.ResourceNotFoundException;
 import com.example.cosmeticproject.mapper.CustomerMapper;
 import com.example.cosmeticproject.repository.CustomerRepository;
 import com.example.cosmeticproject.service.CustomerService;
+import jakarta.persistence.Tuple;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +21,7 @@ public class CustomerServiceImpl implements CustomerService {
     final CustomerMapper mapper;
 
     @Override
-    public CustomerDto getCustomerById(Long id) {;
+    public CustomerDto getCustomerById(Long id) {
         return mapper.entityToDto(customerRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Customer" ,"id",id)));
     }
