@@ -4,6 +4,8 @@ import com.example.cosmeticproject.enums.Position;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -11,6 +13,8 @@ import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Data
+@DynamicInsert
+@DynamicUpdate
 @Entity
 @Table(name = "doctors")
 @RequiredArgsConstructor
