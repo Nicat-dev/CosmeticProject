@@ -2,6 +2,7 @@ package com.example.cosmeticproject.service.impl;
 
 import com.example.cosmeticproject.dto.MedicineDto;
 import com.example.cosmeticproject.dto.request.MedicineRequest;
+import com.example.cosmeticproject.entity.Medicine;
 import com.example.cosmeticproject.exception.ResourceIdCanNotBeNull;
 import com.example.cosmeticproject.exception.ResourceNotFoundException;
 import com.example.cosmeticproject.mapper.MedicineMapper;
@@ -32,7 +33,7 @@ public class MedicalServiceImpl implements MedicineService {
     }
 
     @Override
-    public void updateMedicine(MedicineRequest medicineRequest) {
+    public MedicineDto updateMedicine(MedicineRequest medicineRequest) {
         if (Objects.isNull(medicineRequest)){
             throw new RuntimeException("request cannot be null");
         }else {
@@ -41,7 +42,8 @@ public class MedicalServiceImpl implements MedicineService {
                         ,"id",
                         medicineRequest.getId());
             }
-            repository.save(mapper.requestToEntity(medicineRequest));
+            Medicine medicine = repository.save(mapper.requestToEntity(medicineRequest));
+            return mapper.entityToDto(medicine);
         }
     }
 
