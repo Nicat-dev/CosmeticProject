@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface MedicineService {
 
-    void addMedicine(MedicineRequest request);
-    MedicineDto updateMedicine(MedicineRequest medicineRequest);
+    MedicineDto addMedicine(MedicineRequest request);
+    MedicineDto updateMedicine(MedicineRequest medicineRequest,Long id);
     MedicineDto getMedicineById(Long id);
     List<MedicineDto> getMedicineList();
     List<MedicineDto> getMedicineInNotStock();
