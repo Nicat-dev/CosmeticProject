@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import static com.example.cosmeticproject.constants.ConstantValue.NOT_STOCK;
 
@@ -24,16 +25,17 @@ public class MedicalServiceImpl implements MedicineService {
     final MedicineMapper mapper;
 
     @Override
-    public void addMedicine(MedicineRequest request) {
+    public MedicineDto addMedicine(MedicineRequest request) {
         if (Objects.isNull(request)){
             throw new RuntimeException("request cannot be null");
         }else {
-            repository.save(mapper.requestToEntity(request));
+            Medicine medicine = repository.save(mapper.requestToEntity(request));
+            return mapper.entityToDto(medicine);
         }
     }
 
     @Override
-    public MedicineDto updateMedicine(MedicineRequest medicineRequest) {
+    public MedicineDto updateMedicine(MedicineRequest medicineRequest,Long id) {
         if (Objects.isNull(medicineRequest)){
             throw new RuntimeException("request cannot be null");
         }else {
@@ -42,8 +44,13 @@ public class MedicalServiceImpl implements MedicineService {
                         ,"id",
                         medicineRequest.getId());
             }
-            Medicine medicine = repository.save(mapper.requestToEntity(medicineRequest));
-            return mapper.entityToDto(medicine);
+            Optional<Medicine> medicine = repository.findById(id);
+                    if (medicine.isPresent()) {
+                        repository.save(medicine.get());
+                        return mapper.entityToDto(medicine.get());
+                    }else {
+                        throw new ResourceNotFoundException("Resource not found","id",id);
+                    }
         }
     }
 
