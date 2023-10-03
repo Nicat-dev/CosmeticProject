@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static java.lang.Boolean.TRUE;
@@ -33,11 +34,17 @@ public class MedicineController {
                 "Medicine is Not Stock List Successfully founded",medicineDtos));
     }
 
-    @PutMapping("/updateMedicine")
-    public ResponseEntity<BaseResponse<MedicineDto>> updateMedicine(@RequestBody MedicineRequest request){
-        MedicineDto medicineDto = service.updateMedicine(request);
+    @PutMapping("/updateMedicine/{id}")
+    public ResponseEntity<BaseResponse<MedicineDto>> updateMedicine(@RequestBody @Valid MedicineRequest request
+            ,@PathVariable Long id){
+        MedicineDto medicineDto = service.updateMedicine(request,id);
         return ResponseEntity.ok(new BaseResponse<>(TRUE,
                 "Medicine successfully updated",medicineDto));
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<BaseResponse<MedicineRequest>> saveMedicine(@RequestBody MedicineRequest request){
+        return ResponseEntity.ok(new BaseResponse<>(TRUE,"Medicine Succefully added",request));
     }
 
 
