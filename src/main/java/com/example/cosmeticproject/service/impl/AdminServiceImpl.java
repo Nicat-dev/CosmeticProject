@@ -10,7 +10,6 @@ import com.example.cosmeticproject.service.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -38,34 +37,21 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void updateAdmin(AdminstrationRequest adminstrationRequest) {
-        Adminstration adminstration = adminRepository.findByUsername(adminstrationRequest.getUsername());
-        if (Objects.nonNull(adminstration)) {
-            adminRepository.save(mapper.requetsToEntity(adminstrationRequest));
-        }else {
-            throw new RuntimeException("adminstartor cannot find");
-        }
+    public AdminstartionDto updateAdmin(AdminstrationRequest adminstrationRequest,Long id) {
+        Adminstration adminstration = adminRepository.findById(id)
+                .orElseThrow(()->new ResourceNotFoundException("admin",id.toString(),adminstrationRequest));
+        return mapper.entityToDto(adminRepository.save(adminstration));
 
     }
 
     @Override
-    public void saveAdmin(AdminstrationRequest adminstrationRequest) {
-        adminRepository.save(mapper.requetsToEntity(adminstrationRequest));
+    public Adminstration saveAdmin(AdminstrationRequest adminstrationRequest) {
+        return adminRepository.save(mapper.requetsToEntity(adminstrationRequest));
     }
 
     @Override
     public void deleteById(Long id) {
         adminRepository.deleteById(id);
-    }
-
-    @Override
-    public void deleteByEmail(String email) {
-        adminRepository.deleteByEmail(email);
-    }
-
-    @Override
-    public void deleteByUserName(String username) {
-        adminRepository.deleteByUsername(username);
     }
 
 }

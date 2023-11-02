@@ -2,11 +2,15 @@ package com.example.cosmeticproject.controller;
 
 import com.example.cosmeticproject.dto.CosmeticOrderDto;
 import com.example.cosmeticproject.dto.request.CosmeticOrderRequest;
+import com.example.cosmeticproject.dto.response.BaseResponse;
 import com.example.cosmeticproject.service.CosmeticOrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static java.lang.Boolean.TRUE;
 
 @RestController
 @RequestMapping("/cosmetic")
@@ -21,8 +25,10 @@ public class CosmeticOrderController {
     }
 
     @GetMapping("/getById/{id}")
-    public CosmeticOrderDto getCosmeticOrderById(@PathVariable Long id){
-        return service.getCustomerById(id);
+    public ResponseEntity<BaseResponse<CosmeticOrderDto>> getCosmeticOrderById(@PathVariable Long id){
+        return ResponseEntity.ok(new BaseResponse<>(TRUE,
+                "Customer successfully find"
+                , service.getCustomerById(id)));
     }
 
     @DeleteMapping("/deleteById/{id}")
@@ -31,8 +37,10 @@ public class CosmeticOrderController {
     }
 
     @GetMapping("/getAllCosmetic")
-    public List<CosmeticOrderDto> getCosmeticList(){
-        return service.getCustomerList();
+    public ResponseEntity<BaseResponse<List<CosmeticOrderDto>>> getCosmeticList(){
+        return ResponseEntity.ok(new BaseResponse<>(TRUE,
+                "Customer List Successfully finded"
+                ,service.getCustomerList()));
     }
 
 }
