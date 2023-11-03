@@ -32,6 +32,20 @@ public class AdminstartionController {
                 service.getAdminById(id)));
     }
 
+    @GetMapping("/findByEmail/{email}")
+    public ResponseEntity<BaseResponse<AdminstartionDto>> getAdminByEmail(@PathVariable String email){
+        return ResponseEntity.ok(new BaseResponse<>(TRUE,
+                "Admin succesfully finded",
+                service.getAdminByEmail(email)));
+    }
+
+    @GetMapping("/getAdminByName/{username}")
+    public ResponseEntity<BaseResponse<AdminstartionDto>> getAdminByUsername(@PathVariable String username){
+        return ResponseEntity.ok(new BaseResponse<>(TRUE,
+                "Admin successfully finded",
+                service.getAdminByUsername(username)));
+    }
+
     @DeleteMapping("/deleteById/{id}")
     public void deleteById(@PathVariable Long id){
         service.deleteById(id);
