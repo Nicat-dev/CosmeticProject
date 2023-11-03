@@ -38,9 +38,8 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public AdminstartionDto updateAdmin(AdminstrationRequest adminstrationRequest,Long id) {
-        Adminstration adminstration = adminRepository.findById(id)
-                .orElseThrow(()->new ResourceNotFoundException("admin",id.toString(),adminstrationRequest));
-        return mapper.entityToDto(adminRepository.save(adminstration));
+        return mapper.entityToDto(adminRepository.save(adminRepository.findById(id)
+                .orElseThrow(()->new ResourceNotFoundException("admin",id.toString(),adminstrationRequest))));
 
     }
 
