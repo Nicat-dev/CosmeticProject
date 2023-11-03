@@ -2,6 +2,7 @@ package com.example.cosmeticproject.service.impl;
 
 import com.example.cosmeticproject.dto.CosmeticOrderDto;
 import com.example.cosmeticproject.dto.request.CosmeticOrderRequest;
+import com.example.cosmeticproject.entity.CosmeticOrder;
 import com.example.cosmeticproject.exception.ResourceIdCanNotBeNull;
 import com.example.cosmeticproject.exception.ResourceNotFoundException;
 import com.example.cosmeticproject.mapper.CosmeticMapper;
@@ -32,12 +33,9 @@ public class CosmeticServiceImpl implements CosmeticOrderService{
 
     @Override
     public void deleteById(Long id) {
-        if (id== null){
-            throw new ResourceIdCanNotBeNull("Id","id cannot be null",id);
-        }else {
-            repository.deleteById(repository.findById(id)
-                    .orElseThrow(()-> new ResourceNotFoundException("CosmeticOrder","id",id)).getId());
-        }
+        CosmeticOrder order = repository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("CosmeticOrder","id",id));
+        repository.deleteById(order.getId());
 
     }
 

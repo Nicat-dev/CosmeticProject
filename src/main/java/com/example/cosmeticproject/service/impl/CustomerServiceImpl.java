@@ -2,6 +2,7 @@ package com.example.cosmeticproject.service.impl;
 
 import com.example.cosmeticproject.dto.CustomerDto;
 import com.example.cosmeticproject.dto.request.CustomerRequest;
+import com.example.cosmeticproject.entity.Customer;
 import com.example.cosmeticproject.exception.ResourceNotFoundException;
 import com.example.cosmeticproject.mapper.CustomerMapper;
 import com.example.cosmeticproject.repository.CustomerRepository;
@@ -55,20 +56,15 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void deleteCustomerById(Long id) {
-        if (getCustomerById(id) == null){
-            throw new ResourceNotFoundException("Customer","Id tapilmadi",id);
-        }else {
-            customerRepository.deleteById(id);
-        }
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Customer","Id tapilmadi",id));
+        customerRepository.deleteById(customer.getId());
     }
 
     @Override
     public void deleteCustomerByEmail(String email) {
-        if (getCustomerByEmail(email) == null){
-            throw new ResourceNotFoundException("Customer","Email tapilmadi",email);
-        }else {
-            customerRepository.deleteByEmail(email);
-        }
-
+        Customer customer = customerRepository.findCustomerByEmail(email)
+                .orElseThrow(()-> new ResourceNotFoundException("Customer","Email tapilmadi",email));
+        customerRepository.deleteByEmail(customer.getEmail());
     }
 }
