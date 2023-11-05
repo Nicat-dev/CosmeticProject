@@ -7,12 +7,10 @@ import com.example.cosmeticproject.exception.ResourceNotFoundException;
 import com.example.cosmeticproject.mapper.CustomerMapper;
 import com.example.cosmeticproject.repository.CustomerRepository;
 import com.example.cosmeticproject.service.CustomerService;
-import jakarta.persistence.Tuple;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -23,8 +21,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDto getCustomerById(Long id) {
-        return mapper.entityToDto(customerRepository.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("Customer" ,"id",id)));
+        return mapper.entityToDto(findCustomerById(id));
     }
 
     @Override
@@ -34,8 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDto getCustomerByEmail(String email) {
-        return mapper.entityToDto(customerRepository.findCustomerByEmail(email)
-                .orElseThrow(()-> new ResourceNotFoundException("Customer","email not found",email)));
+        return mapper.entityToDto(findCustomerByEmail(email));
     }
 
     @Override
@@ -56,15 +52,21 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void deleteCustomerById(Long id) {
-        Customer customer = customerRepository.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("Customer","Id tapilmadi",id));
-        customerRepository.deleteById(customer.getId());
+        customerRepository.deleteById(findCustomerById(id).getId());
     }
 
     @Override
     public void deleteCustomerByEmail(String email) {
-        Customer customer = customerRepository.findCustomerByEmail(email)
+        customerRepository.deleteByEmail(findCustomerByEmail(email).getEmail());
+    }
+
+    private Customer findCustomerById(Long id){
+        return customerRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Customer","Id tapilmadi",id));
+    }
+
+    private Customer findCustomerByEmail(String email){
+        return customerRepository.findCustomerByEmail(email)
                 .orElseThrow(()-> new ResourceNotFoundException("Customer","Email tapilmadi",email));
-        customerRepository.deleteByEmail(customer.getEmail());
     }
 }
