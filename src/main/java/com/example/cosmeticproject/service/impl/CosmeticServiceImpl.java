@@ -16,8 +16,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CosmeticServiceImpl implements CosmeticOrderService{
 
-    final CosmeticOrderRepository repository;
-    final CosmeticMapper mapper;
+    CosmeticOrderRepository repository;
+    CosmeticMapper mapper;
 
     @Override
     public CosmeticOrderDto getCustomerById(Long id) {

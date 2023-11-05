@@ -16,8 +16,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
-    final CustomerRepository customerRepository;
-    final CustomerMapper mapper;
+    CustomerRepository customerRepository;
+    CustomerMapper mapper;
 
     @Override
     public CustomerDto getCustomerById(Long id) {

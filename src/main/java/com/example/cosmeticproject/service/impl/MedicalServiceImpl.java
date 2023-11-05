@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 import static com.example.cosmeticproject.constants.ConstantValue.NOT_STOCK;
 
@@ -22,8 +21,8 @@ import static com.example.cosmeticproject.constants.ConstantValue.NOT_STOCK;
 @RequiredArgsConstructor
 public class MedicalServiceImpl implements MedicineService {
 
-    final MedicineRepository repository;
-    final MedicineMapper mapper;
+    MedicineRepository repository;
+    MedicineMapper mapper;
 
     @Override
     public MedicineDto addMedicine(MedicineRequest request) {

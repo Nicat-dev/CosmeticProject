@@ -16,8 +16,8 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class PaymentDetailServiceImpl implements PaymentDetailService {
 
-    final PaymentRepository repository;
-    final PaymentDetailMapper paymentDetailMapper;
+    PaymentRepository repository;
+    PaymentDetailMapper paymentDetailMapper;
 
     @Override
     public PaymentDetailDto findById(Long id) {
