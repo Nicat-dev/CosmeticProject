@@ -2,6 +2,7 @@ package com.example.cosmeticproject.service.impl;
 
 import com.example.cosmeticproject.dto.MedicineDto;
 import com.example.cosmeticproject.dto.request.MedicineRequest;
+import com.example.cosmeticproject.entity.Doctors;
 import com.example.cosmeticproject.entity.Medicine;
 import com.example.cosmeticproject.exception.ResourceIdCanNotBeNull;
 import com.example.cosmeticproject.exception.ResourceNotFoundException;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 import static com.example.cosmeticproject.constants.ConstantValue.NOT_STOCK;
 
@@ -21,8 +21,8 @@ import static com.example.cosmeticproject.constants.ConstantValue.NOT_STOCK;
 @RequiredArgsConstructor
 public class MedicalServiceImpl implements MedicineService {
 
-    final MedicineRepository repository;
-    final MedicineMapper mapper;
+    MedicineRepository repository;
+    MedicineMapper mapper;
 
     @Override
     public MedicineDto addMedicine(MedicineRequest request) {
@@ -36,28 +36,13 @@ public class MedicalServiceImpl implements MedicineService {
 
     @Override
     public MedicineDto updateMedicine(MedicineRequest medicineRequest,Long id) {
-        if (Objects.isNull(medicineRequest)){
-            throw new RuntimeException("request cannot be null");
-        }else {
-            if (Objects.isNull(medicineRequest.getId())){
-                throw new ResourceIdCanNotBeNull(medicineRequest.toString()
-                        ,"id",
-                        medicineRequest.getId());
-            }
-            Optional<Medicine> medicine = repository.findById(id);
-                    if (medicine.isPresent()) {
-                        repository.save(medicine.get());
-                        return mapper.entityToDto(medicine.get());
-                    }else {
-                        throw new ResourceNotFoundException("Resource not found","id",id);
-                    }
-        }
+        findMedicineById(id);
+        return mapper.entityToDto(repository.save(mapper.requestToEntity(medicineRequest)));
     }
 
     @Override
     public MedicineDto getMedicineById(Long id) {
-            return mapper.entityToDto(repository.findById(id)
-                    .orElseThrow(()-> new ResourceNotFoundException("Medcine","id",id)));
+            return mapper.entityToDto(findMedicineById(id));
 
     }
 
@@ -69,6 +54,11 @@ public class MedicalServiceImpl implements MedicineService {
     @Override
     public List<MedicineDto> getMedicineInNotStock() {
         return mapper.medicineDtoList(repository.findAllByCount(NOT_STOCK));
+    }
+
+    private Medicine findMedicineById(Long id){
+        return repository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Medcine","id",id));
     }
 
 }
