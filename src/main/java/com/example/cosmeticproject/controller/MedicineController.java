@@ -14,7 +14,7 @@ import java.util.List;
 import static java.lang.Boolean.TRUE;
 
 @RestController
-@RequestMapping("/medical")
+@RequestMapping("api/medical")
 @RequiredArgsConstructor
 public class MedicineController {
 

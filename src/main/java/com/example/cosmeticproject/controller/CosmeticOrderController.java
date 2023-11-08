@@ -13,7 +13,7 @@ import java.util.List;
 import static java.lang.Boolean.TRUE;
 
 @RestController
-@RequestMapping("/cosmetic")
+@RequestMapping("api/cosmetic")
 @RequiredArgsConstructor
 public class CosmeticOrderController {
 
