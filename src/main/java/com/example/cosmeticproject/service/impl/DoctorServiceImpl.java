@@ -16,8 +16,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DoctorServiceImpl implements DoctorService {
 
-    final DoctorRepository doctorRepository;
-    final DoctorMapper mapper;
+    DoctorRepository doctorRepository;
+    DoctorMapper mapper;
 
     @Override
     public DoctorDto getDoctorById(Long id) {

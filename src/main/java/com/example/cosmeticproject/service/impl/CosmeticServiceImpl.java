@@ -3,7 +3,6 @@ package com.example.cosmeticproject.service.impl;
 import com.example.cosmeticproject.dto.CosmeticOrderDto;
 import com.example.cosmeticproject.dto.request.CosmeticOrderRequest;
 import com.example.cosmeticproject.entity.CosmeticOrder;
-import com.example.cosmeticproject.exception.ResourceIdCanNotBeNull;
 import com.example.cosmeticproject.exception.ResourceNotFoundException;
 import com.example.cosmeticproject.mapper.CosmeticMapper;
 import com.example.cosmeticproject.repository.CosmeticOrderRepository;
@@ -17,13 +16,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CosmeticServiceImpl implements CosmeticOrderService{
 
-    final CosmeticOrderRepository repository;
-    final CosmeticMapper mapper;
+    CosmeticOrderRepository repository;
+    CosmeticMapper mapper;
 
     @Override
     public CosmeticOrderDto getCustomerById(Long id) {
-        return mapper.entityToDto(repository.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("CosmeticOrder","CosmeticOrder",id)));
+        return mapper.entityToDto(order(id));
     }
 
     @Override
@@ -32,15 +30,25 @@ public class CosmeticServiceImpl implements CosmeticOrderService{
     }
 
     @Override
+    public CosmeticOrderDto updateCosmeticOrderById(CosmeticOrderRequest request, Long id) {
+        order(id);//check null
+        CosmeticOrder cosmeticOrder = mapper.requestToEntity(request);
+        return mapper.entityToDto(repository.save(cosmeticOrder));
+    }
+
+    @Override
     public void deleteById(Long id) {
-        CosmeticOrder order = repository.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("CosmeticOrder","id",id));
-        repository.deleteById(order.getId());
+        repository.deleteById(order(id).getId());
 
     }
 
     @Override
     public void saveCosmeticOrder(CosmeticOrderRequest request) {
         repository.save(mapper.requestToEntity(request));
+    }
+
+    private CosmeticOrder order(Long id){
+        return repository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("CosmeticOrder","id",id));
     }
 }
