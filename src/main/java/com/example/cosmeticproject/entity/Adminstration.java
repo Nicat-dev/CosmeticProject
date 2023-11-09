@@ -3,7 +3,6 @@ package com.example.cosmeticproject.entity;
 import com.example.cosmeticproject.enums.GenderEnum;
 import com.example.cosmeticproject.enums.MaritalStatus;
 import com.example.cosmeticproject.enums.Position;
-import com.example.cosmeticproject.validations.MatchPassword;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -40,7 +39,6 @@ public class Adminstration {
     @NotBlank(message = "surname cannot be blank")
     private String surname;
     @Column(name = "password",nullable = false)
-    @MatchPassword
     private String password;
     @Column(name = "birth_date",nullable = false)
     @NotBlank(message = "birthday can not be blank")

@@ -14,6 +14,7 @@ import java.util.List;
 
 
 @RestController
+@RequestMapping("api/customer")
 @RequiredArgsConstructor
 public class CustomerController {
 
