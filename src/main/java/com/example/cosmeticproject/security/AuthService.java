@@ -18,9 +18,9 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class AuthService {
 
-    private final AuthenticationManager authenticationManager;
-    private final JwtUtil jwtUtil;
-    private final UserDetailsService userDetailsService;
+    AuthenticationManager authenticationManager;
+    JwtUtil jwtUtil;
+    UserDetailsService userDetailsService;
 
     public JwtDto login(LoginRequest request) {
         authenticate(request.getUsername(), request.getPassword());
