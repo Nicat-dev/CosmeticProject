@@ -26,8 +26,8 @@ public class SecurityFilter extends OncePerRequestFilter {
 
     private static final Logger log = LoggerFactory.getLogger(SecurityFilter.class);
 
-    private final JwtUtil jwtUtil;
-    private final UserDetailsService userDetailsService;
+    JwtUtil jwtUtil;
+    UserDetailsService userDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
