@@ -18,7 +18,7 @@ public class CustomerRequest {
     private String name;
     private String surname;
     private Date birthDate;
-    private String gmail;
+    private String email;
     private String fatherName;
     private String motherName;
     private String workLocation;

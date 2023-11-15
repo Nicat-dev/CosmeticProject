@@ -68,6 +68,7 @@ public class Adminstration {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime updatedAt;
 
+    @Builder.Default
     @ManyToMany
     @ToString.Exclude
     @JoinTable(name = "admin_roles",

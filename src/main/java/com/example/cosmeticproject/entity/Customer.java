@@ -75,6 +75,7 @@ public class Customer {
     @JoinColumn(name = "doctors_id")
     private Doctors doctors;
 
+    @Builder.Default
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PaymentDetail> paymentDetails = new ArrayList<>();
 
