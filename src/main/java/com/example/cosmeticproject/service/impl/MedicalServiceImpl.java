@@ -29,8 +29,7 @@ public class MedicalServiceImpl implements MedicineService {
         if (Objects.isNull(request)){
             throw new RuntimeException("request cannot be null");
         }else {
-            Medicine medicine = repository.save(mapper.requestToEntity(request));
-            return mapper.entityToDto(medicine);
+            return mapper.entityToDto(repository.save(mapper.requestToEntity(request)));
         }
     }
 
