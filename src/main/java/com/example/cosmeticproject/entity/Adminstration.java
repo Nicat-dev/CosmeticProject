@@ -5,6 +5,7 @@ import com.example.cosmeticproject.enums.MaritalStatus;
 import com.example.cosmeticproject.enums.Position;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -16,8 +17,12 @@ import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @DynamicInsert
 @DynamicUpdate
 @Entity
@@ -76,4 +81,16 @@ public class Adminstration {
             inverseJoinColumns = @JoinColumn(name = "roles_role_name"))
     private List<Role> roles = new ArrayList<>();
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Adminstration that = (Adminstration) o;
+        return id != null && Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
