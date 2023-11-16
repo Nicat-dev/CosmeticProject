@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class AdminstartionDto {
     private String name;
     private String surname;
-    private String gmail;
+    private String email;
     private String username;
     private String fatherName;
     private String motherName;

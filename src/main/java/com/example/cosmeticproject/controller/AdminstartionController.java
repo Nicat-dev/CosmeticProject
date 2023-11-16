@@ -13,7 +13,7 @@ import static java.lang.Boolean.TRUE;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/admin")
+@RequestMapping("api/admin")
 public class AdminstartionController {
 
     final AdminService service;

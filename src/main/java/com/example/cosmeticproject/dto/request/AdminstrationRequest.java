@@ -21,6 +21,7 @@ public class AdminstrationRequest {
     private String fatherName;
     private String motherName;
     private String phoneNumber;
+    private String password;
     private GenderEnum gender;
     private MaritalStatus maritalStatus;
     private Position position;

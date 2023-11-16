@@ -19,4 +19,5 @@ public class PaymentDetailRequest {
     private BigDecimal salePercentage;
     private String doctorName;
     private String administratorId;
+    private Long customerId;
 }

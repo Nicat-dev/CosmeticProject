@@ -3,6 +3,7 @@ package com.example.cosmeticproject.controller;
 import com.example.cosmeticproject.dto.CosmeticOrderDto;
 import com.example.cosmeticproject.dto.request.CosmeticOrderRequest;
 import com.example.cosmeticproject.dto.response.BaseResponse;
+import com.example.cosmeticproject.entity.CosmeticOrder;
 import com.example.cosmeticproject.service.CosmeticOrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import java.util.List;
 import static java.lang.Boolean.TRUE;
 
 @RestController
-@RequestMapping("/cosmetic")
+@RequestMapping("api/cosmetic")
 @RequiredArgsConstructor
 public class CosmeticOrderController {
 
@@ -29,6 +30,12 @@ public class CosmeticOrderController {
         return ResponseEntity.ok(new BaseResponse<>(TRUE,
                 "Customer successfully find"
                 , service.getCustomerById(id)));
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<CosmeticOrderDto> updateCosmeticOrder(@RequestBody CosmeticOrderRequest request,
+                                                                @PathVariable Long id){
+        return ResponseEntity.ok(service.updateCosmeticOrderById(request,id));
     }
 
     @DeleteMapping("/deleteById/{id}")
