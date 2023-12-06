@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("v1/api/paymentDetail")
 @RequiredArgsConstructor
@@ -30,5 +32,10 @@ public class PaymentDetailController {
     public ResponseEntity<PaymentDetailDto> updatePaymentInfo(@RequestBody PaymentDetailRequest request,
                                                               @PathVariable Long id){
         return ResponseEntity.ok(service.updatePaymentDetail(request,id));
+    }
+
+    @GetMapping("/getAll")
+    public ResponseEntity<List<PaymentDetailDto>> getAllPaymentInfo(){
+        return ResponseEntity.ok(service.getAllPayment());
     }
 }
