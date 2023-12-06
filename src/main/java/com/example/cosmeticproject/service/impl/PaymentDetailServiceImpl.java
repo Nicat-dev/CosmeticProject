@@ -28,12 +28,12 @@ public class PaymentDetailServiceImpl implements PaymentDetailService {
 
     @Override
     public void savePaymentDetail(PaymentDetailRequest request) {
-       saveDetail(request);
+       requestToEntity(request);
     }
 
     @Override
-    public PaymentDetailDto updatePaymentDetail(PaymentDetailRequest request) {
-       return saveDetail(request);
+    public PaymentDetailDto updatePaymentDetail(PaymentDetailRequest request,Long id) {
+       return paymentDetailMapper.entityToDto(requestToEntity(request,id));
     }
 
     @Override
@@ -52,15 +52,15 @@ public class PaymentDetailServiceImpl implements PaymentDetailService {
         }
     }
 
-    //that private method helps us reduce replace
-    private PaymentDetailDto saveDetail(PaymentDetailRequest request){
-        if (Objects.isNull(request.getId())) {
-            throw new ResourceNotFoundException(
-                    request.getPaymentInfo(),
-                    request.getPaymentInfo(),
-                    request);
-        }else {
-           return paymentDetailMapper.entityToDto(repository.save(paymentDetailMapper.requestToEntity(request)));
+    private void requestToEntity(PaymentDetailRequest request){
+        paymentDetailMapper.requestToEntity(request);
+    }
+
+    private PaymentDetail requestToEntity(PaymentDetailRequest request,Long id){
+        if (Objects.isNull(id)){
+            throw new ResourceNotFoundException(request.getPaymentInfo(),request.getPaymentInfo(),request.getId());
+        }else{
+            return paymentDetailMapper.requestToEntity(request);
         }
     }
 }
