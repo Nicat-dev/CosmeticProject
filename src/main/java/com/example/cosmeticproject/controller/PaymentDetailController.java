@@ -43,4 +43,5 @@ public class PaymentDetailController {
     public void deleteById(@PathVariable Long id){
         service.deleteById(id);
     }
+
 }
