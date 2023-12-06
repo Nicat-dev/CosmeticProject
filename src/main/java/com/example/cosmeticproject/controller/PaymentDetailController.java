@@ -25,4 +25,10 @@ public class PaymentDetailController {
     public void savePaymentDetails(@RequestBody PaymentDetailRequest request){
         service.savePaymentDetail(request);
     }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<PaymentDetailDto> updatePaymentInfo(@RequestBody PaymentDetailRequest request,
+                                                              @PathVariable Long id){
+        return ResponseEntity.ok(service.updatePaymentDetail(request,id));
+    }
 }
