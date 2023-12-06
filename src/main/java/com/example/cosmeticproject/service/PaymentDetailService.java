@@ -9,7 +9,7 @@ public interface PaymentDetailService {
 
     PaymentDetailDto findById(Long id);
     void savePaymentDetail(PaymentDetailRequest request);
-    PaymentDetailDto updatePaymentDetail(PaymentDetailRequest request);
+    PaymentDetailDto updatePaymentDetail(PaymentDetailRequest request,Long id);
     List<PaymentDetailDto> getAllPayment();
     void deleteById(Long id);
 }
