@@ -38,4 +38,9 @@ public class PaymentDetailController {
     public ResponseEntity<List<PaymentDetailDto>> getAllPaymentInfo(){
         return ResponseEntity.ok(service.getAllPayment());
     }
+
+    @DeleteMapping("/deleteById/{id}")
+    public void deleteById(@PathVariable Long id){
+        service.deleteById(id);
+    }
 }
