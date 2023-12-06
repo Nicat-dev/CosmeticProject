@@ -1,13 +1,11 @@
 package com.example.cosmeticproject.controller;
 
 import com.example.cosmeticproject.dto.PaymentDetailDto;
+import com.example.cosmeticproject.dto.request.PaymentDetailRequest;
 import com.example.cosmeticproject.service.PaymentDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("v1/api/paymentDetail")
@@ -23,4 +21,8 @@ public class PaymentDetailController {
     }
 
 
+    @PostMapping("/save")
+    public void savePaymentDetails(@RequestBody PaymentDetailRequest request){
+        service.savePaymentDetail(request);
+    }
 }
