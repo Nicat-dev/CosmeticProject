@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PaymentDetailDto {
+    private Long id;
     private String paymentInfo;
     private BigDecimal paymentCost;
     private BigDecimal salePercentage;

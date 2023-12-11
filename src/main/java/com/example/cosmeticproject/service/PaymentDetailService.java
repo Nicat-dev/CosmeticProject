@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface PaymentDetailService {
 
-    PaymentDetailDto findById(Long id);
-    void savePaymentDetail(PaymentDetailRequest request);
+    PaymentDetailDto getById(Long id);
+    PaymentDetailDto savePaymentDetail(PaymentDetailRequest request);
     PaymentDetailDto updatePaymentDetail(PaymentDetailRequest request,Long id);
     List<PaymentDetailDto> getAllPayment();
     void deleteById(Long id);
