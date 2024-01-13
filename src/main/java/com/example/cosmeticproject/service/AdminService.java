@@ -10,6 +10,6 @@ public interface AdminService {
     AdminstartionDto getAdminByUsername(String userName);
     AdminstartionDto getAdminById(Long id);
     AdminstartionDto updateAdmin(AdminstrationRequest adminstrationRequest,Long id);
-    Adminstration saveAdmin(AdminstrationRequest adminstrationRequest);
+    AdminstartionDto saveAdmin(AdminstrationRequest adminstrationRequest);
     void deleteById(Long id);
 }

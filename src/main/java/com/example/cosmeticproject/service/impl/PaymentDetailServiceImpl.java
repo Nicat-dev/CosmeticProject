@@ -21,14 +21,13 @@ public class PaymentDetailServiceImpl implements PaymentDetailService {
     PaymentDetailMapper paymentDetailMapper;
 
     @Override
-    public PaymentDetailDto findById(Long id) {
-        return paymentDetailMapper.entityToDto(
-                repository.findById(id).orElseThrow(()-> new ResourceNotFoundException("id","id",id)));
+    public PaymentDetailDto getById(Long id) {
+        return paymentDetailMapper.entityToDto(findById(id));
     }
 
     @Override
-    public void savePaymentDetail(PaymentDetailRequest request) {
-       requestToEntity(request);
+    public PaymentDetailDto savePaymentDetail(PaymentDetailRequest request) {
+       return paymentDetailMapper.entityToDto(repository.save(requestToEntity(request)));
     }
 
     @Override
@@ -45,15 +44,15 @@ public class PaymentDetailServiceImpl implements PaymentDetailService {
 
     @Override
     public void deleteById(Long id) {
-        if (Objects.isNull(id)){
-            throw new ResourceNotFoundException("Id can not find","id",id);
-        }else {
-            repository.deleteById(id);
-        }
+        repository.delete(findById(id));
     }
 
-    private void requestToEntity(PaymentDetailRequest request){
-        paymentDetailMapper.requestToEntity(request);
+    private PaymentDetail findById(Long id) {
+        return repository.findById(id).orElseThrow(()-> new ResourceNotFoundException("id","id",id));
+    }
+
+    private PaymentDetail requestToEntity(PaymentDetailRequest request){
+        return paymentDetailMapper.requestToEntity(request);
     }
 
     private PaymentDetail requestToEntity(PaymentDetailRequest request,Long id){
