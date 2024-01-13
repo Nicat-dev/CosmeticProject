@@ -43,8 +43,8 @@ public class CosmeticServiceImpl implements CosmeticOrderService{
     }
 
     @Override
-    public void saveCosmeticOrder(CosmeticOrderRequest request) {
-        repository.save(mapper.requestToEntity(request));
+    public CosmeticOrderDto saveCosmeticOrder(CosmeticOrderRequest request) {
+        return mapper.entityToDto(repository.save(mapper.requestToEntity(request)));
     }
 
     private CosmeticOrder order(Long id){
