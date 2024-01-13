@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CosmeticOrderDto {
+    private Long id;
     private String orderName;
     private BigDecimal orderValue;
 }
