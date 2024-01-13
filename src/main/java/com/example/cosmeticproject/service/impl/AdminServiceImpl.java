@@ -44,8 +44,8 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Adminstration saveAdmin(AdminstrationRequest adminstrationRequest) {
-        return adminRepository.save(adminMapper.requestToEntity(adminstrationRequest));
+    public AdminstartionDto saveAdmin(AdminstrationRequest adminstrationRequest) {
+        return adminMapper.entityToDto(adminRepository.save(adminMapper.requestToEntity(adminstrationRequest)));
     }
 
     @Override

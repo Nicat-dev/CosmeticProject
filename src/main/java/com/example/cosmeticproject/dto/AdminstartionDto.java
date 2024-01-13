@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AdminstartionDto {
+    private Long id;
     private String name;
     private String surname;
     private String email;
