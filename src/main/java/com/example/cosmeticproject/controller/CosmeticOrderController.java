@@ -2,16 +2,14 @@ package com.example.cosmeticproject.controller;
 
 import com.example.cosmeticproject.dto.CosmeticOrderDto;
 import com.example.cosmeticproject.dto.request.CosmeticOrderRequest;
-import com.example.cosmeticproject.dto.response.BaseResponse;
-import com.example.cosmeticproject.entity.CosmeticOrder;
 import com.example.cosmeticproject.service.CosmeticOrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
-import static java.lang.Boolean.TRUE;
 
 @RestController
 @RequestMapping("api/cosmetic")
@@ -21,33 +19,37 @@ public class CosmeticOrderController {
     final CosmeticOrderService service;
 
     @PostMapping("/save")
-    public void saveCosmetic(@RequestBody CosmeticOrderRequest request){
-        service.saveCosmeticOrder(request);
+    public ResponseEntity<CosmeticOrderDto> saveCosmetic(@RequestBody CosmeticOrderRequest request){
+        final var dto =service.saveCosmeticOrder(request);
+        final var location = ServletUriComponentsBuilder.fromCurrentContextPath().path("{id}").build(dto.getId());
+
+        return ResponseEntity.created(location).body(dto);
     }
 
     @GetMapping("/getById/{id}")
-    public ResponseEntity<BaseResponse<CosmeticOrderDto>> getCosmeticOrderById(@PathVariable Long id){
-        return ResponseEntity.ok(new BaseResponse<>(TRUE,
-                "Customer successfully find"
-                , service.getCustomerById(id)));
+    public ResponseEntity<CosmeticOrderDto> getCosmeticOrderById(@PathVariable Long id){
+        final var dto = service.getCustomerById(id);
+        return ResponseEntity.ok().body(dto);
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<CosmeticOrderDto> updateCosmeticOrder(@RequestBody CosmeticOrderRequest request,
                                                                 @PathVariable Long id){
-        return ResponseEntity.ok(service.updateCosmeticOrderById(request,id));
+        final var dto = service.updateCosmeticOrderById(request, id);
+        final var location = ServletUriComponentsBuilder.fromCurrentContextPath().path("{id}").build(dto.getId());
+        return ResponseEntity.created(location).body(dto);
     }
 
     @DeleteMapping("/deleteById/{id}")
-    public void deleteById(@PathVariable Long id){
+    public ResponseEntity<Void> deleteById(@PathVariable Long id){
         service.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/getAllCosmetic")
-    public ResponseEntity<BaseResponse<List<CosmeticOrderDto>>> getCosmeticList(){
-        return ResponseEntity.ok(new BaseResponse<>(TRUE,
-                "Customer List Successfully finded"
-                ,service.getCustomerList()));
+    public ResponseEntity<List<CosmeticOrderDto>> getCosmeticList(){
+        final var dtoList = service.getCustomerList();
+        return ResponseEntity.ok().body(dtoList);
     }
 
 }

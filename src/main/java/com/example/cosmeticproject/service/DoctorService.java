@@ -10,6 +10,6 @@ public interface DoctorService {
     DoctorDto getDoctorById(Long id);
     List<DoctorDto> getDoctors();
     void deleteDoctorById(Long id);
-    void saveDoctor(DoctorRequest doctorRequest);
+    DoctorDto saveDoctor(DoctorRequest doctorRequest);
 
 }

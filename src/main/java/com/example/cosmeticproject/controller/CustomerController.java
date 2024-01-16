@@ -21,18 +21,15 @@ public class CustomerController {
     final CustomerService customerService;
 
     @RequestMapping("/getCustomerById/{id}")
-    public ResponseEntity<BaseResponse<CustomerDto>> getCustomerById(@PathVariable Long id){
-        return ResponseEntity.ok(new BaseResponse<>(Boolean.TRUE,
-                "Customer successffully find",
-                customerService.getCustomerById(id)));
+    public ResponseEntity<CustomerDto> getCustomerById(@PathVariable Long id){
+        final var dto = customerService.getCustomerById(id);
+        return ResponseEntity.ok().body(dto);
     }
 
     @GetMapping("/getAllCustomerByName/{name}")
-    public ResponseEntity<BaseResponse<List<CustomerDto>>> getAllCustomerByName(@PathVariable String name){
-
-        return ResponseEntity.ok(new BaseResponse<>(Boolean.TRUE,
-                "CustomerList succesfully find",
-                customerService.getAllCustomerByName(name)));
+    public ResponseEntity<List<CustomerDto>> getAllCustomerByName(@PathVariable String name){
+        final var dtoList = customerService.getAllCustomerByName(name);
+        return ResponseEntity.ok().body(dtoList);
     }
 
     }

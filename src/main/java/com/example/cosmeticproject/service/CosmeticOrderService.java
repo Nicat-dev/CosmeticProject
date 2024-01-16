@@ -11,7 +11,7 @@ public interface CosmeticOrderService {
     List<CosmeticOrderDto> getCustomerList();
     CosmeticOrderDto updateCosmeticOrderById(CosmeticOrderRequest request, Long id);
     void deleteById(Long id);
-    void saveCosmeticOrder(CosmeticOrderRequest request);
+    CosmeticOrderDto saveCosmeticOrder(CosmeticOrderRequest request);
 
 
 }
