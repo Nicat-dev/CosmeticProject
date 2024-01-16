@@ -38,7 +38,7 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public void saveDoctor(DoctorRequest doctorRequest) {
-        doctorRepository.save(mapper.requestToEntity(doctorRequest));
+    public DoctorDto saveDoctor(DoctorRequest doctorRequest) {
+        return mapper.entityToDto(doctorRepository.save(mapper.requestToEntity(doctorRequest)));
     }
 }
