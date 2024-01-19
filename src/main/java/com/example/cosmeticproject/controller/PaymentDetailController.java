@@ -21,7 +21,8 @@ public class PaymentDetailController {
 
     @GetMapping("/{id}")
     public ResponseEntity<PaymentDetailDto> paymentInfo(@PathVariable Long id) {
-        return ResponseEntity.ok(service.getById(id));
+        final var dto = service.getById(id);
+        return ResponseEntity.ok(dto);
     }
 
     /*
@@ -42,12 +43,16 @@ public class PaymentDetailController {
     @PutMapping("/{id}")
     public ResponseEntity<PaymentDetailDto> updatePaymentInfo(@Valid @RequestBody PaymentDetailRequest request,
                                                               @PathVariable Long id) {
-        return ResponseEntity.ok(service.updatePaymentDetail(request, id));
+        final var dto = service.updatePaymentDetail(request,id);
+        final var location = ServletUriComponentsBuilder.fromCurrentContextPath().path("{id}").build(dto.getId());
+
+        return ResponseEntity.created(location).body(dto);
     }
 
     @GetMapping
     public ResponseEntity<List<PaymentDetailDto>> getAllPaymentInfo() {
-        return ResponseEntity.ok(service.getAllPayment());
+        final var dtoList = service.getAllPayment();
+        return ResponseEntity.ok(dtoList);
     }
 
     @DeleteMapping("/{id}")
